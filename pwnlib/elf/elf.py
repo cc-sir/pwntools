@@ -1033,16 +1033,17 @@ class ELF(ELFFile):
         banner = self.string(self.symbols.linux_banner)
 
         # 'Linux version 3.18.31-gd0846ecc
-        regex = r'Linux version (\S+)'
+        # regex = r'Linux version (\S+)'
+        regex = b'Linux version (\S+)'
         match = re.search(regex, banner)
 
         if match:
             version = match.group(1)
 
-            if '-' in version:
-                version, self.build = version.split('-', 1)
+            if b'-' in version:
+                version, self.build = version.split(b'-', 1)
 
-            self.version = list(map(int, version.split('.')))
+            self.version = list(map(int, version.split(b'.')))
 
         self.config['version'] = self.version
 
