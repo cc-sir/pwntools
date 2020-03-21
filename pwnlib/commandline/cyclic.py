@@ -65,6 +65,7 @@ def main(args):
 
         try:
             pat = packing.pack(int(pat, 0), subsize*8)
+            pat = str(pat, encoding="utf-8")
         except ValueError:
             pass
 
